@@ -1,3 +1,7 @@
 # ShadowLayout
 
-可自定义边缘形状的阴影布局
+Android阴影布局，支持自定义边界形状
+
+已实现如下效果：
+- 圆角：RoundedShadowLayout
+- 箭头：PopupShadowLayout
