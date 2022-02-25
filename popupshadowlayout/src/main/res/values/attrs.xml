@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PopupShadowLayout">
+        <attr name="popupCornerRadius" format="dimension" />
+        <attr name="popupArrowSide" format="enum">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="left" value="2" />
+            <enum name="right" value="3" />
+            <enum name="bottom" value="4" />
+        </attr>
+        <attr name="popupArrowCenter" format="boolean" />
+        <attr name="popupArrowAlign" format="enum">
+            <enum name="center" value="0" />
+            <enum name="start" value="1" />
+            <enum name="end" value="2" />
+        </attr>
+        <attr name="popupArrowOffset" format="dimension" />
+        <attr name="popupArrowRadius" format="dimension" />
+        <attr name="popupArrowWidth" format="dimension" />
+        <attr name="popupArrowHeight" format="dimension" />
+    </declare-styleable>
+</resources>

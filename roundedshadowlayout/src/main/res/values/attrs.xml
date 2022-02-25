@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundedShadowLayout">
+        <attr name="roundedCornerRadiusAdaptation" format="boolean" />
+        <attr name="roundedCornerRadius" format="dimension" />
+        <attr name="roundedCornerRadiusTopLeft" format="dimension" />
+        <attr name="roundedCornerRadiusTopRight" format="dimension" />
+        <attr name="roundedCornerRadiusBottomRight" format="dimension" />
+        <attr name="roundedCornerRadiusBottomLeft" format="dimension" />
+    </declare-styleable>
+</resources>

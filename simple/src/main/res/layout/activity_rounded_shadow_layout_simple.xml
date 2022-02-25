@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".RoundedShadowLayoutSimpleActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="top"
+            app:layout_constraintBottom_toTopOf="@+id/roundedShadowLayout"
+            app:layout_constraintEnd_toEndOf="@+id/roundedShadowLayout"
+            app:layout_constraintStart_toStartOf="@+id/roundedShadowLayout" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="left"
+            app:layout_constraintBottom_toBottomOf="@+id/roundedShadowLayout"
+            app:layout_constraintEnd_toStartOf="@+id/roundedShadowLayout"
+            app:layout_constraintTop_toTopOf="@+id/roundedShadowLayout" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="right"
+            app:layout_constraintBottom_toBottomOf="@+id/roundedShadowLayout"
+            app:layout_constraintStart_toEndOf="@+id/roundedShadowLayout"
+            app:layout_constraintTop_toTopOf="@+id/roundedShadowLayout" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bottom"
+            app:layout_constraintEnd_toEndOf="@+id/roundedShadowLayout"
+            app:layout_constraintStart_toStartOf="@+id/roundedShadowLayout"
+            app:layout_constraintTop_toBottomOf="@+id/roundedShadowLayout" />
+
+        <per.goweii.roundedshadowlayout.RoundedShadowLayout
+            android:id="@+id/roundedShadowLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shadowColor="@color/purple_200"
+            app:shadowOffsetX="0dp"
+            app:shadowRadius="20dp"
+            app:shadowSymmetry="true"
+            app:roundedCornerRadiusAdaptation="true"
+            app:roundedCornerRadiusBottomLeft="20dp">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@color/purple_200"
+                android:gravity="center"
+                android:text="RoundedShadowLayout"
+                android:textColor="@color/purple_700"
+                tools:ignore="HardcodedText" />
+
+        </per.goweii.roundedshadowlayout.RoundedShadowLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阴影透明度" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_shadow_color_alpha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阴影颜色" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_shadow_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阴影大小" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_shadow_radius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阴影x轴偏移" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_shadow_offset_x"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阴影y轴偏移" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_shadow_offset_y"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阴影对称" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_shadow_symmetry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圆角半径-全部" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_rounded_corner_radius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圆角半径-左上" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_rounded_corner_radius_tl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圆角半径-左下" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_rounded_corner_radius_bl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圆角半径-右上" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_rounded_corner_radius_tr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圆角半径-右下" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/sb_rounded_corner_radius_br"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
