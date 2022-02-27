@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ShadowLayout">
-        <attr name="shadowSolidColor" format="color" />
         <attr name="shadowColor" format="color" />
         <attr name="shadowSymmetry" format="boolean" />
         <attr name="shadowRadius" format="dimension" />

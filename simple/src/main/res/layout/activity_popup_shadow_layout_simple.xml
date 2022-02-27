@@ -17,29 +17,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@color/purple_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:popupArrowAlign="center"
             app:popupArrowHeight="30dp"
-            app:popupArrowRadius="3dp"
+            app:popupArrowRadius="12dp"
             app:popupArrowSide="top"
             app:popupArrowWidth="30dp"
             app:popupArrowCenter="false"
             app:popupCornerRadius="30dp"
             app:shadowColor="@color/purple_200"
-            app:shadowOffsetY="10dp"
-            app:shadowRadius="20dp"
-            app:shadowSolidColor="@color/purple_200"
-            app:shadowSymmetry="false">
+            app:shadowOffsetY="30dp"
+            app:shadowOffsetX="20dp"
+            app:shadowRadius="20dp">
 
             <TextView
                 android:layout_width="160dp"
                 android:layout_height="200dp"
                 android:gravity="center"
                 android:text="PopupShadowLayout"
-                android:textColor="@color/purple_700"
+                android:textColor="@color/purple_200"
                 tools:ignore="HardcodedText" />
 
         </per.goweii.popupshadowlayout.PopupShadowLayout>

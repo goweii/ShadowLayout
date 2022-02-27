@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 
 import per.goweii.shadowlayout.ShadowLayout;
 
+/**
+ * 圆角阴影布局
+ */
 public class RoundedShadowLayout extends ShadowLayout {
     private final RoundedShadowOutlineProvider mRoundedShadowOutlineProvider = new RoundedShadowOutlineProvider();
 
@@ -114,12 +117,13 @@ public class RoundedShadowLayout extends ShadowLayout {
         public void buildShadowOutline(@NonNull ShadowLayout shadowLayout,
                                        @NonNull Path shadowOutline,
                                        @NonNull RectF shadowInsets) {
-            mRoundRect.set(
-                    shadowInsets.left,
-                    shadowInsets.top,
-                    shadowLayout.getWidth() - shadowInsets.right,
-                    shadowLayout.getHeight() - shadowInsets.bottom
-            );
+            if (shadowLayout.isInnerShadow()) {
+                mRoundRect.set(Math.max(shadowInsets.left, 0), Math.max(shadowInsets.top, 0),
+                        shadowLayout.getWidth() - Math.max(shadowInsets.right, 0),
+                        shadowLayout.getHeight() - Math.max(shadowInsets.bottom, 0));
+            } else {
+                mRoundRect.set(0, 0, shadowLayout.getWidth(), shadowLayout.getHeight());
+            }
             shadowOutline.addRoundRect(mRoundRect, mRoundRadius, Path.Direction.CW);
         }
 

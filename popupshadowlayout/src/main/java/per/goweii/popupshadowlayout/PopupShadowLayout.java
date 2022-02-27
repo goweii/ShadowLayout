@@ -16,6 +16,9 @@ import java.lang.annotation.RetentionPolicy;
 
 import per.goweii.shadowlayout.ShadowLayout;
 
+/**
+ * 带箭头的阴影布局，可用于PopupWindow。
+ */
 public class PopupShadowLayout extends ShadowLayout {
     private final PopupShadowOutlineProvider mPopupShadowOutlineProvider;
 
@@ -61,8 +64,8 @@ public class PopupShadowLayout extends ShadowLayout {
     }
 
     @Override
-    protected void onShadowInsetsChanged(@NonNull RectF shadowInsets) {
-        super.onShadowInsetsChanged(shadowInsets);
+    protected void updateShadowInsets(@NonNull RectF shadowInsets) {
+        super.updateShadowInsets(shadowInsets);
         Rect arrowInsets = mPopupShadowOutlineProvider.calcArrowInsets();
         shadowInsets.left = shadowInsets.left + arrowInsets.left;
         shadowInsets.top = shadowInsets.top + arrowInsets.top;
@@ -135,7 +138,7 @@ public class PopupShadowLayout extends ShadowLayout {
         private int mArrowHeight = 0;
         private int mCornerRadius = 0;
 
-        private final Rect mArrowInset = new Rect();
+        private final Rect mArrowInsets = new Rect();
 
         @Override
         public void buildShadowOutline(@NonNull ShadowLayout shadowLayout,
@@ -245,27 +248,36 @@ public class PopupShadowLayout extends ShadowLayout {
             }
         }
 
-        @SuppressWarnings("SuspiciousNameCombination")
         @NonNull
         private Rect calcArrowInsets() {
-            mArrowInset.setEmpty();
+            mArrowInsets.setEmpty();
+            final float arrowRadius = mArrowRadius;
+            final float arrowHeight = mArrowHeight;
+            final float halfArrowWidth = getHalfArrowWidth();
+            final double vertexDegrees = calcVertexDegrees();
+
+            final float b1 = (float) (arrowRadius * Math.cos(Math.toRadians(vertexDegrees)));
+            final float b2 = arrowHeight * b1 / halfArrowWidth;
+
+            float arrowRadiusOffset = b2 * 0.5F;
+
             switch (mArrowSide) {
                 case ARROW_SIDE_TOP:
-                    mArrowInset.top = mArrowHeight;
+                    mArrowInsets.top = (int) (arrowHeight - arrowRadiusOffset + 0.5F);
                     break;
                 case ARROW_SIDE_LEFT:
-                    mArrowInset.left = mArrowHeight;
+                    mArrowInsets.left = (int) (arrowHeight - arrowRadiusOffset + 0.5F);
                     break;
                 case ARROW_SIDE_RIGHT:
-                    mArrowInset.right = mArrowHeight;
+                    mArrowInsets.right = (int) (arrowHeight - arrowRadiusOffset + 0.5F);
                     break;
                 case ARROW_SIDE_BOTTOM:
-                    mArrowInset.bottom = mArrowHeight;
+                    mArrowInsets.bottom = (int) (arrowHeight - arrowRadiusOffset + 0.5F);
                     break;
                 default:
                     break;
             }
-            return mArrowInset;
+            return mArrowInsets;
         }
 
         private void buildNoneArrow(@NonNull ShadowLayout shadowLayout,

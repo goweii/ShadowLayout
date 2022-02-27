@@ -49,11 +49,11 @@ public class PopupShadowLayoutSimpleActivity extends AppCompatActivity {
         binding.sbShadowRadius.setOnSeekBarChangeListener(new SimpleOnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean touch) {
-                binding.popupShadowLayout.setShadowRadius(progress);
+                binding.popupShadowLayout.setShadowRadius(progress - 400);
             }
         });
-        binding.sbShadowRadius.setMax(200);
-        binding.sbShadowRadius.setProgress(60);
+        binding.sbShadowRadius.setMax(600);
+        binding.sbShadowRadius.setProgress(460);
 
         binding.sbShadowOffsetX.setOnSeekBarChangeListener(new SimpleOnSeekBarChangeListener() {
             @Override

@@ -12,65 +12,29 @@
         android:layout_width="match_parent"
         android:layout_height="400dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="top"
-            app:layout_constraintBottom_toTopOf="@+id/roundedShadowLayout"
-            app:layout_constraintEnd_toEndOf="@+id/roundedShadowLayout"
-            app:layout_constraintStart_toStartOf="@+id/roundedShadowLayout" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="left"
-            app:layout_constraintBottom_toBottomOf="@+id/roundedShadowLayout"
-            app:layout_constraintEnd_toStartOf="@+id/roundedShadowLayout"
-            app:layout_constraintTop_toTopOf="@+id/roundedShadowLayout" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="right"
-            app:layout_constraintBottom_toBottomOf="@+id/roundedShadowLayout"
-            app:layout_constraintStart_toEndOf="@+id/roundedShadowLayout"
-            app:layout_constraintTop_toTopOf="@+id/roundedShadowLayout" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="bottom"
-            app:layout_constraintEnd_toEndOf="@+id/roundedShadowLayout"
-            app:layout_constraintStart_toStartOf="@+id/roundedShadowLayout"
-            app:layout_constraintTop_toBottomOf="@+id/roundedShadowLayout" />
-
         <per.goweii.roundedshadowlayout.RoundedShadowLayout
             android:id="@+id/roundedShadowLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@color/purple_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:roundedCornerRadius="20dp"
             app:shadowColor="@color/purple_200"
-            app:shadowOffsetX="0dp"
-            app:shadowRadius="20dp"
-            app:shadowSymmetry="true"
-            app:roundedCornerRadiusAdaptation="true"
-            app:roundedCornerRadiusBottomLeft="20dp">
+            app:shadowOffsetX="-40dp"
+            app:shadowOffsetY="50dp"
+            app:shadowRadius="10dp"
+            app:shadowSymmetry="false">
 
             <TextView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:background="@color/purple_200"
                 android:gravity="center"
                 android:text="RoundedShadowLayout"
-                android:textColor="@color/purple_700"
+                android:textColor="@color/purple_200"
                 tools:ignore="HardcodedText" />
 
         </per.goweii.roundedshadowlayout.RoundedShadowLayout>
