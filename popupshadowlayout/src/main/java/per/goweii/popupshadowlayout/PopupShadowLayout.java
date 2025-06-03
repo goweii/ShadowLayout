@@ -662,7 +662,7 @@ public class PopupShadowLayout extends ShadowLayout {
                     maxOffset = shadowLayout.getHeight() - shadowInsets.bottom - minArrowPadding;
                     switch (mArrowAlign) {
                         case ARROW_ALIGN_CENTER:
-                            realOffset = (minOffset + maxOffset) / 2F;
+                            realOffset = (minOffset + maxOffset) / 2F + mArrowOffset;
                             break;
                         case ARROW_ALIGN_START:
                             realOffset = minOffset + mArrowOffset;
@@ -683,7 +683,7 @@ public class PopupShadowLayout extends ShadowLayout {
                     maxOffset = shadowLayout.getWidth() - shadowInsets.right - minArrowPadding;
                     switch (mArrowAlign) {
                         case ARROW_ALIGN_CENTER:
-                            realOffset = (minOffset + maxOffset) / 2F;
+                            realOffset = (minOffset + maxOffset) / 2F + mArrowOffset;
                             break;
                         case ARROW_ALIGN_START:
                             realOffset = minOffset + mArrowOffset;
