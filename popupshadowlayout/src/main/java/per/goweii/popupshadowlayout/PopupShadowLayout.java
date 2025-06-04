@@ -6,10 +6,12 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -33,7 +35,7 @@ public class PopupShadowLayout extends ShadowLayout {
     public PopupShadowLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mPopupShadowOutlineProvider = new PopupShadowOutlineProvider();
-        setShadowOutlineProvider(mPopupShadowOutlineProvider);
+        super.setShadowOutlineProvider(mPopupShadowOutlineProvider);
         setClipToShadowOutline(true);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PopupShadowLayout);
         int cornerRadius = typedArray.getDimensionPixelSize(R.styleable.PopupShadowLayout_popupCornerRadius, 0);
@@ -73,28 +75,70 @@ public class PopupShadowLayout extends ShadowLayout {
         shadowInsets.bottom = shadowInsets.bottom + arrowInsets.bottom;
     }
 
+    @NonNull
+    @Override
+    public PopupShadowOutlineProvider getShadowOutlineProvider() {
+        return mPopupShadowOutlineProvider;
+    }
+
+    @VisibleForTesting
+    @Override
+    public void setShadowOutlineProvider(@Nullable ShadowOutlineProvider shadowOutlineProvider) {
+        throw new UnsupportedOperationException("setShadowOutlineProvider() is not supported");
+    }
+
+    @PopupShadowOutlineProvider.ArrowSide
+    public int setArrowSide() {
+        return mPopupShadowOutlineProvider.getArrowSide();
+    }
+
     public void setArrowSide(@PopupShadowOutlineProvider.ArrowSide int arrowSide) {
         mPopupShadowOutlineProvider.setArrowSide(arrowSide);
+    }
+
+    @PopupShadowOutlineProvider.ArrowAlign
+    public int getArrowAlign() {
+        return mPopupShadowOutlineProvider.getArrowAlign();
     }
 
     public void setArrowAlign(@PopupShadowOutlineProvider.ArrowAlign int arrowAlign) {
         mPopupShadowOutlineProvider.setArrowAlign(arrowAlign);
     }
 
+    public int getArrowOffset() {
+        return mPopupShadowOutlineProvider.getArrowOffset();
+    }
+
     public void setArrowOffset(int arrowOffset) {
         mPopupShadowOutlineProvider.setArrowOffset(arrowOffset);
+    }
+
+    public int getArrowRadius() {
+        return mPopupShadowOutlineProvider.getArrowRadius();
     }
 
     public void setArrowRadius(int arrowRadius) {
         mPopupShadowOutlineProvider.setArrowRadius(arrowRadius);
     }
 
+    public int getCornerRadius() {
+        return mPopupShadowOutlineProvider.getCornerRadius();
+    }
+
     public void setCornerRadius(int cornerRadius) {
         mPopupShadowOutlineProvider.setCornerRadius(cornerRadius);
     }
 
+    public int getArrowWidth() {
+        return mPopupShadowOutlineProvider.getArrowWidth();
+    }
+
     public void setArrowWidth(int arrowWidth) {
         mPopupShadowOutlineProvider.setArrowWidth(arrowWidth);
+    }
+
+    public int getArrowHeight() {
+        return mPopupShadowOutlineProvider.getArrowHeight();
     }
 
     public void setArrowHeight(int arrowHeight) {
@@ -144,6 +188,10 @@ public class PopupShadowLayout extends ShadowLayout {
         public void buildShadowOutline(@NonNull ShadowLayout shadowLayout,
                                        @NonNull Path shadowOutline,
                                        @NonNull RectF shadowInsets) {
+            if (mArrowWidth <= 0 || mArrowHeight <= 0) {
+                buildNoneArrow(shadowLayout, shadowOutline, shadowInsets);
+                return;
+            }
             switch (mArrowSide) {
                 case ARROW_SIDE_LEFT:
                     buildLeftArrow(shadowLayout, shadowOutline, shadowInsets);
@@ -199,6 +247,11 @@ public class PopupShadowLayout extends ShadowLayout {
             return minSize;
         }
 
+        @ArrowSide
+        public int getArrowSide() {
+            return mArrowSide;
+        }
+
         public void setArrowSide(@ArrowSide int arrowSide) {
             if (mArrowSide != arrowSide) {
                 mArrowSide = arrowSide;
@@ -206,11 +259,20 @@ public class PopupShadowLayout extends ShadowLayout {
             }
         }
 
-        public void setArrowAlign(int arrowAlign) {
+        @ArrowAlign
+        public int getArrowAlign() {
+            return mArrowAlign;
+        }
+
+        public void setArrowAlign(@ArrowAlign int arrowAlign) {
             if (mArrowAlign != arrowAlign) {
                 mArrowAlign = arrowAlign;
                 invalidateShadowOutline();
             }
+        }
+
+        public int getArrowOffset() {
+            return mArrowOffset;
         }
 
         public void setArrowOffset(int arrowOffset) {
@@ -220,11 +282,19 @@ public class PopupShadowLayout extends ShadowLayout {
             }
         }
 
+        public int getArrowRadius() {
+            return mArrowRadius;
+        }
+
         public void setArrowRadius(int arrowRadius) {
             if (mArrowRadius != arrowRadius) {
                 mArrowRadius = arrowRadius;
                 invalidateShadowOutline();
             }
+        }
+
+        public int getCornerRadius() {
+            return mCornerRadius;
         }
 
         public void setCornerRadius(int cornerRadius) {
@@ -234,11 +304,19 @@ public class PopupShadowLayout extends ShadowLayout {
             }
         }
 
+        public int getArrowWidth() {
+            return mArrowWidth;
+        }
+
         public void setArrowWidth(int arrowWidth) {
             if (mArrowWidth != arrowWidth) {
                 mArrowWidth = arrowWidth;
                 invalidateShadowOutline();
             }
+        }
+
+        public int getArrowHeight() {
+            return mArrowHeight;
         }
 
         public void setArrowHeight(int arrowHeight) {
@@ -251,6 +329,15 @@ public class PopupShadowLayout extends ShadowLayout {
         @NonNull
         private Rect calcArrowInsets() {
             mArrowInsets.setEmpty();
+
+            if (mArrowSide == ARROW_SIDE_NONE) {
+                return mArrowInsets;
+            }
+
+            if (mArrowWidth <= 0 || mArrowHeight <= 0) {
+                return mArrowInsets;
+            }
+
             final float arrowRadius = mArrowRadius;
             final float arrowHeight = mArrowHeight;
             final float halfArrowWidth = getHalfArrowWidth();

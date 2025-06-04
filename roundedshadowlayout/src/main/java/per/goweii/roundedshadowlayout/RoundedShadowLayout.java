@@ -7,6 +7,8 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import per.goweii.shadowlayout.ShadowLayout;
 
@@ -60,6 +62,18 @@ public class RoundedShadowLayout extends ShadowLayout {
         int radiusTop = (int) Math.max(getTopLeftCornerRadius(), getTopRightCornerRadius());
         int radiusBottom = (int) Math.max(getBottomLeftCornerRadius(), getBottomRightCornerRadius());
         return radiusTop + radiusBottom + super.getSuggestedMinimumHeight();
+    }
+
+    @NonNull
+    @Override
+    public RoundedShadowOutlineProvider getShadowOutlineProvider() {
+        return mRoundedShadowOutlineProvider;
+    }
+
+    @VisibleForTesting
+    @Override
+    public void setShadowOutlineProvider(@Nullable ShadowOutlineProvider shadowOutlineProvider) {
+        throw new UnsupportedOperationException("setShadowOutlineProvider() is not supported");
     }
 
     public float getTopLeftCornerRadius() {
