@@ -88,7 +88,7 @@ public class PopupShadowLayout extends ShadowLayout {
     }
 
     @PopupShadowOutlineProvider.ArrowSide
-    public int setArrowSide() {
+    public int getArrowSide() {
         return mPopupShadowOutlineProvider.getArrowSide();
     }
 
